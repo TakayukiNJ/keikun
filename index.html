@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>愚痴聞く彼氏くん|ご利用お支払いページ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+</head>
+<body>
+    <div class="w-75 mx-auto">
+        <p class="mt-3">「愚痴聞く彼氏くん」無制限プラン</p>
+        <hr>
+        <keikun></keikun>
+        <hr>
+        <ul>
+            <li>無制限にご利用可能です</li>
+            <li>音声機能も追加予定です</li>
+        </ul>
+    </div>
+   <script async
+        src="https://js.stripe.com/v3/buy-button.js">
+    </script>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script>
+        liff.init({
+        liffId: "2000824535-xaBRl7Eq"
+        }).catch((err) => {
+            console.log(err);
+        });
+        liff.ready.then(() => {
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            }
+            const idToken = liff.getDecodedIDToken();
+            const userId = idToken.sub;
+            $('keikun').append(`<stripe-buy-button
+                buy-button-id="buy_btn_1Ns82XLrkZkHsBvPwzxa84JU"
+                publishable-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                client-reference-id="${userId}"
+            >
+            </stripe-buy-button>`);
+        })
+    </script>
+</body>
+</html>
